@@ -1,0 +1,19 @@
+{
+  "name": "server",
+  "version": "1.0.0",
+  "description": "AI integrated Interview preparation MERN App",
+  "main": "index.js",
+  "scripts": {
+    "test": "echo \"Error: no test specified\" && exit 1"
+  },
+  "repository": {
+    "type": "git",
+    "url": "git+https://github.com/deepakkasala/AI-Integrated-Interview-Prep-App.git"
+  },
+  "author": "Deepak",
+  "license": "ISC",
+  "bugs": {
+    "url": "https://github.com/deepakkasala/AI-Integrated-Interview-Prep-App/issues"
+  },
+  "homepage": "https://github.com/deepakkasala/AI-Integrated-Interview-Prep-App#readme"
+}
