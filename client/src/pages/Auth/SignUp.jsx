@@ -4,13 +4,18 @@ import { useNavigate } from "react-router-dom";
 import Input from "../../components/Inputs/Input";
 import ProfilePhotoSelector from "../../components/Inputs/ProfilePhotoSelector";
 import { validateEmail } from "../../utils/helper";
+import { useContext } from "react";
+import { UserContext } from "../../context/userContext";
+import axiosInstance from "../../utils/axiosInstance";
+import { API_PATHS } from "../../utils/apiPaths";
+import uploadImage from "../../utils/uploadImage";
 
 const SignUp = ({ setCurrentPage }) => {
   const [profilePicture, setProfilePicture] = useState(null);
   const [fullName, setFullName] = useState("");
   const [email, setEmail] = useState("");
   const [password, setPassword] = useState("");
-
+  const { updateUser } = useContext(UserContext);
   const [error, setError] = useState(null);
   const navigate = useNavigate();
 
@@ -34,6 +39,26 @@ const SignUp = ({ setCurrentPage }) => {
 
     // Make API call to backend to create user account
     try {
+      if (profilePicture) {
+        const imgUploadRes = await uploadImage(profilePicture);
+        console.log("ImageUPL", imgUploadRes);
+
+        profileImageUrl = imgUploadRes.profileImageUrl || "";
+      }
+      const response = await axiosInstance.post(API_PATHS.AUTH.REGISTER, {
+        name: fullName,
+        email,
+        password,
+        profileImageUrl,
+      });
+      const { token, user } = response.data;
+      console.log(response.data);
+
+      if (token) {
+        localStorage.setItem("token", token);
+        updateUser(user);
+        navigate("/dashboard");
+      }
     } catch (error) {
       console.log(error);
       if (error.response && error.response.data.message) {

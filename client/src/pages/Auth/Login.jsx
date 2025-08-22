@@ -3,13 +3,18 @@ import { useState } from "react";
 import { useNavigate } from "react-router-dom";
 import Input from "../../components/Inputs/Input";
 import { validateEmail } from "../../utils/helper";
+import axiosInstance from "../../utils/axiosInstance";
+import { API_PATHS } from "../../utils/apiPaths";
+import { useContext } from "react";
+import { UserContext } from "../../context/userContext";
 
 const Login = ({ setCurrentPage }) => {
   const [email, setEmail] = useState("");
   const [password, setPassword] = useState("");
   const [error, setError] = useState("");
-
   const navigate = useNavigate();
+  const { updateUser } = useContext(UserContext);
+
   const handleLogin = async (e) => {
     e.preventDefault();
     // Handle login logic here
@@ -26,6 +31,20 @@ const Login = ({ setCurrentPage }) => {
 
     // Login API Call to backend to validaerte user credentials
     try {
+      const response = await axiosInstance.post(API_PATHS.AUTH.LOGIN, {
+        email,
+        password,
+      });
+      console.log(response.data);
+
+      const token = response?.data?.token;
+      if (token) {
+        // console.log("Token after login:", token);
+        localStorage.setItem("token", token);
+        updateUser(response?.data?.user);
+        navigate("/dashboard");
+        console.log("After navigating to dBd: ", localStorage.getItem("token"));
+      }
     } catch (error) {
       console.log(error);
       if (error.response && error.response.data.message) {

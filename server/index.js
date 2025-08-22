@@ -10,15 +10,13 @@ const questionRoutes = require("./routes/question");
 const aiRoutes = require("./routes/ai");
 // Middleware to parse JSON bodies
 const port = process.env.PORT || 3060;
-
-app.use(
-  cors({
-    origin: `http://localhost:${port}`,
-    methods: ["GET", "POST", "PUT", "DELETE"],
-    credentials: true,
-    allowedHeaders: ["Content-Type", "Authorization"],
-  })
-);
+// {
+//     origin: `http://localhost:${port}`,
+//     methods: ["GET", "POST", "PUT", "DELETE"],
+//     credentials: true,
+//     allowedHeaders: ["Content-Type", "Authorization"],
+//   }
+app.use(cors());
 app.use(express.json());
 app.use("/uploads", express.static(path.join(__dirname, "uploads"), {}));
 
