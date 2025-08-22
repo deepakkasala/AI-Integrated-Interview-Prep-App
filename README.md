@@ -411,6 +411,46 @@ if(!array2.includes(item.name))){
 
 
 
+1. What are class based components and functional components, explain?
+ 
+2. what is the difference between class based components and functional components, which is the best one among both?
+ 
+3. What are the hooks used in React to optimize the performance of a react application?
+ 
+4. Scenario : You have built a React application and you made an api call to backend to get some data, and the app is loading for so much time displaying loader on screen, what might be the issue, what steps will you take to resolve it and how can you resolve it?
+ 
+5. How can you measure the performance of the application (hint : through react Dev tools)
+ 
+6. Coding question : you have given a list data passed as props to the component
+List = [
+{id:1,name:"apple" } {id:2,name:"banana"} {id:3,name:"mango"} {id:4,name:"grapes"} {id:5,name:"orange"}
+]
+ 
+and you are asked to implement search functionality where you have an search input bar, when you  type anything, you the result should be filtered and shown from the array, and the letters you're typing should be highlighted while giving input.
+6.a. By making some changes, How can you optimize this entire code (hint : useRef instead of useState and denouncing)
+ 
+7. What is debouncing and throttling in JavaScript.
+ 
+8. What is reduce function in JavaScript and its uses.
+ 
+9. You have given a parent component and you are asked to build a button component where the button component accepts the props from parent component (props: such as button name, colored, bg, width, other css properties and button properties)
+You need to build a button component such that all the props passed to it will be and button should be rendered based on the props sent by parent component.
+ 
+10. You have given an array of objects data, and the data would be list of names
+List=[
+{id:1,name:"Mike"}, {id:2,name:"john"}, {id:3,name:"peter"}, {id:4,name:"john"}, {id:5,name:"daniel"}
+]
+ 
+You need to produce an output such that, you have to count how many times the name occurred.
+Output :
+Say John :2, Mike :1, Peter :1 and so on....
+ 
+11. What is key in React, and why it's used, what are the disadvantages when we don't maintain unique value for keys in React?
+ 
+12. What is the empty array [] in use Effect hook and why it's used?
+ 
+13. What are life cycle methods in class based components and what are the alternative ways in functional components to implement life cycle methods.
+
 -------------------------------------------------------------------------------
 
 Udemy Certifications on MongoDB, GitHub, Postman, TCSS, JS, core JAVA.
