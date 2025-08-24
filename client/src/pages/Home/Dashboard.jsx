@@ -68,6 +68,7 @@ import axiosInstance from "../../utils/axiosInstance";
 import SummaryCard from "../../components/Cards/SummaryCard";
 import moment from "moment";
 import Modal from "../../components/Modal";
+import CreateSession from "./CreateSession";
 
 const Dashboard = () => {
   const navigate = useNavigate();
@@ -128,7 +129,17 @@ const Dashboard = () => {
           Add New
         </button>
       </div>
-      <Modal />
+      <Modal
+        isOpen={openCreateModal}
+        onClose={() => {
+          setOpenCreateModal(false);
+        }}
+        hideHeader
+      >
+        <div>
+          <CreateSession />
+        </div>
+      </Modal>
     </DashboardLayout>
   );
 };
