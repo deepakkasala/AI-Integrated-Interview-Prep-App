@@ -15,7 +15,6 @@ const axiosInstance = axios.create({
 axiosInstance.interceptors.request.use(
   (config) => {
     const accessToken = localStorage.getItem("token");
-    console.log("Api Triggered: ", accessToken);
 
     if (accessToken) {
       config.headers.Authorization = `Bearer ${accessToken}`;

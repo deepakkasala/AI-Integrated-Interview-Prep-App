@@ -6,7 +6,6 @@ import { useNavigate } from "react-router-dom";
 const ProfileInfoCard = () => {
   const { user, clearUser } = useContext(UserContext);
   const navigate = useNavigate();
-  console.log(user);
 
   const handleLogout = () => {
     localStorage.clear();

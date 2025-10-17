@@ -16,7 +16,6 @@ import SpinLoader from "../../components/Loader/SpinLoader";
 
 const InterviewPrep = () => {
   const { sessionId } = useParams();
-  console.log("Session ID from params:", sessionId);
 
   const [sessionData, setSessionData] = useState(null);
   const [errMsg, setErrMsg] = useState("");
@@ -102,8 +101,6 @@ const InterviewPrep = () => {
         { sessionId, questions: generatedQuestions }
       );
       if (response.data) {
-        console.log(response.data);
-
         toast.success("Added More Q&A!!");
         fetchSessionDetailsById();
       }
@@ -119,8 +116,6 @@ const InterviewPrep = () => {
   };
 
   useEffect(() => {
-    console.log("Interview Prep OPENED!!");
-
     fetchSessionDetailsById();
     return () => {};
   }, []);

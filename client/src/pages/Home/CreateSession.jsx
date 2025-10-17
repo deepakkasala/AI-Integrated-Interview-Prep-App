@@ -42,7 +42,6 @@ const CreateSession = () => {
           numberOfQuestions: 10,
         }
       );
-      console.log("AI Response:", aiResponse);
 
       const generatedQuestions = aiResponse.data.questions || [];
 
@@ -54,7 +53,6 @@ const CreateSession = () => {
           questions: generatedQuestions,
         }
       );
-      console.log("Session Creation Response:", sessionResponse);
 
       if (sessionResponse.data?.session?._id) {
         navigate(`/interview-prep/${sessionResponse.data?.session?._id}`);

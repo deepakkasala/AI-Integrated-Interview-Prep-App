@@ -43,8 +43,8 @@ const SignUp = ({ setCurrentPage }) => {
       let profileImageUrl = "";
       if (profilePicture) {
         const imgUploadRes = await uploadImageToImageKit(profilePicture);
-        console.log("ImageKit Upload Response:", imgUploadRes);
-        profileImageUrl = imgUploadRes?.url || ""; // ImageKit returns 'url' in response
+
+        profileImageUrl = imgUploadRes?.profileImageUrl || ""; // ImageKit returns 'url' in response
       }
       const response = await axiosInstance.post(API_PATHS.AUTH.REGISTER, {
         name: fullName,
@@ -53,7 +53,6 @@ const SignUp = ({ setCurrentPage }) => {
         profileImageUrl,
       });
       const { token, user } = response.data;
-      console.log(response.data);
 
       if (token) {
         localStorage.setItem("token", token);
@@ -61,7 +60,6 @@ const SignUp = ({ setCurrentPage }) => {
         navigate("/dashboard");
       }
     } catch (error) {
-      console.log(error);
       if (error.response && error.response.data.message) {
         setError(
           error.response.data.message || "Sign up failed. Please try again."

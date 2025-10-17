@@ -35,18 +35,14 @@ const Login = ({ setCurrentPage }) => {
         email,
         password,
       });
-      console.log(response.data);
 
       const token = response?.data?.token;
       if (token) {
-        // console.log("Token after login:", token);
         localStorage.setItem("token", token);
         updateUser(response?.data?.user);
         navigate("/dashboard");
-        console.log("After navigating to dBd: ", localStorage.getItem("token"));
       }
     } catch (error) {
-      console.log(error);
       if (error.response && error.response.data.message) {
         setError(
           error.response.data.message || "Login failed. Please try again."

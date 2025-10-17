@@ -5,7 +5,6 @@ const createSession = async (req, res) => {
   try {
     const { role, experience, topicsToFocus, description, questions } =
       req.body;
-    // console.log(req.user);
 
     const userId = req.user._id;
 
@@ -112,7 +111,7 @@ const deleteSession = async (req, res) => {
     await Question.deleteMany({ session: sessionId });
     //then delete the session
     await session.deleteOne();
-    
+
     res.status(200).json({
       message: "Session deleted successfully",
       success: true,
