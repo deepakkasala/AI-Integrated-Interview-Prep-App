@@ -8,7 +8,8 @@ import { useContext } from "react";
 import { UserContext } from "../../context/userContext";
 import axiosInstance from "../../utils/axiosInstance";
 import { API_PATHS } from "../../utils/apiPaths";
-import uploadImage from "../../utils/uploadImage";
+import uploadImageToImageKit from "../../utils/uploadImageToImageKit";
+// import uploadImage from "../../utils/uploadImageToImageKit";
 
 const SignUp = ({ setCurrentPage }) => {
   const [profilePicture, setProfilePicture] = useState(null);
@@ -39,10 +40,11 @@ const SignUp = ({ setCurrentPage }) => {
 
     // Make API call to backend to create user account
     try {
+      let profileImageUrl = "";
       if (profilePicture) {
-        const imgUploadRes = await uploadImage(profilePicture);
-        console.log("ImageUPL", imgUploadRes);
-        profileImageUrl = imgUploadRes.profileImageUrl || "";
+        const imgUploadRes = await uploadImageToImageKit(profilePicture);
+        console.log("ImageKit Upload Response:", imgUploadRes);
+        profileImageUrl = imgUploadRes?.url || ""; // ImageKit returns 'url' in response
       }
       const response = await axiosInstance.post(API_PATHS.AUTH.REGISTER, {
         name: fullName,

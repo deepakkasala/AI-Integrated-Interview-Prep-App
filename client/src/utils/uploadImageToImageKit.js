@@ -1,7 +1,7 @@
 import { API_PATHS } from "./apiPaths";
 import axiosInstance from "./axiosInstance";
 
-const uploadImage = async (imageFile) => {
+const uploadImageToImageKit = async (imageFile) => {
   const formData = new FormData();
   formData.append("image", imageFile);
 
@@ -23,4 +23,4 @@ const uploadImage = async (imageFile) => {
   }
 };
 
-export default uploadImage;
+export default uploadImageToImageKit;
