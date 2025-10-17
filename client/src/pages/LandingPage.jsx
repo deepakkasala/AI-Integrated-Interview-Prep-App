@@ -1,5 +1,5 @@
 import React from "react";
-// import HERO_IMG from "../../assets/hero-image.png";
+import HERO_IMG from "../assets/HERO-IMG.png";
 import { APP_FEATURES } from "../utils/data";
 import { useNavigate } from "react-router-dom";
 import { useState } from "react";
@@ -83,7 +83,11 @@ const LandingPage = () => {
       <div className="w-full min-h-full relative z-10">
         <div>
           <section className="flex items-center justify-center -mt-36">
-            <img alt="Hero img" className="w-[80vh] rounded-lg" />
+            <img
+              alt="Hero img"
+              className="w-[80vh] rounded-lg"
+              src={HERO_IMG}
+            />
           </section>
         </div>
 

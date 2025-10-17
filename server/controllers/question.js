@@ -4,6 +4,7 @@ const Session = require("../models/session");
 const addQuestionToSession = async (req, res) => {
   try {
     const { sessionId, questions } = req.body;
+    console.log(sessionId, questions);
 
     if (!sessionId || !questions || !Array.isArray(questions)) {
       return res.status(400).json({

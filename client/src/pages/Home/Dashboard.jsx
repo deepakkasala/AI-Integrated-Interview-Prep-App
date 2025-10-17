@@ -69,6 +69,7 @@ import SummaryCard from "../../components/Cards/SummaryCard";
 import moment from "moment";
 import Modal from "../../components/Modal";
 import CreateSession from "./CreateSession";
+import DeleteAlertContent from "../../components/DeleteAlertContent";
 
 const Dashboard = () => {
   const navigate = useNavigate();
@@ -91,7 +92,16 @@ const Dashboard = () => {
     }
   };
 
-  const deleteSession = async (sessionData) => {};
+  const deleteSession = async (sessionData) => {
+    try {
+      await axiosInstance.delete(API_PATHS.SESSION.DELETE(sessionData?._id));
+      toast.success("Session Deleted successfully!");
+      setOpenDeleteAlert({ open: false, data: null });
+      fetchAllSessions();
+    } catch (error) {
+      console.log(error);
+    }
+  };
 
   useEffect(() => {
     console.log("DashBoard OPENED!!");
@@ -138,6 +148,21 @@ const Dashboard = () => {
       >
         <div>
           <CreateSession />
+        </div>
+      </Modal>
+
+      <Modal
+        isOpen={openDeleteAlert?.open}
+        onClose={() => {
+          setOpenDeleteAlert({ open: false, data: null });
+        }}
+        title="Delete Alert"
+      >
+        <div className="w-[">
+          <DeleteAlertContent
+            content="Are you sure want to delete this session detail?"
+            onDelete={() => deleteSession(openDeleteAlert.data)}
+          />
         </div>
       </Modal>
     </DashboardLayout>

@@ -9,6 +9,8 @@ const ai = new GoogleGenAI({
 });
 
 const generateInterviewQuestions = async (req, res) => {
+  console.log("API HIT!!");
+
   try {
     const { role, experience, topicsToFocus, numberOfQuestions } = req.body;
     if (!role || !experience || !topicsToFocus || !numberOfQuestions) {
@@ -30,7 +32,7 @@ const generateInterviewQuestions = async (req, res) => {
     });
 
     let rawText = response.text;
-    console.log("Raw text from AI model:", rawText);
+    // console.log("Raw text from AI model:", rawText);
 
     if (!rawText) {
       return res.status(500).json({
@@ -80,6 +82,8 @@ const generateInterviewQuestions = async (req, res) => {
     //     error: err.message,
     //   });
     // }
+    // console.log("DATA: ", data);
+
     res.status(200).json({
       message: "Interview questions generated successfully",
       success: true,
@@ -109,7 +113,7 @@ const generateConceptExplanation = async (req, res) => {
     });
 
     let rawText = response.text;
-    console.log("Raw text from AI model:", rawText);
+    // console.log("Raw text from AI model:", rawText);
 
     if (!rawText) {
       return res.status(500).json({

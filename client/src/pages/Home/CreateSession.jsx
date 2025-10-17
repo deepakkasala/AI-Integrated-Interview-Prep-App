@@ -3,6 +3,7 @@ import { useNavigate } from "react-router-dom";
 import Input from "../../components/Inputs/Input";
 import axiosInstance from "../../utils/axiosInstance";
 import { API_PATHS } from "../../utils/apiPaths";
+import SpinLoader from "../../components/Loader/SpinLoader";
 const CreateSession = () => {
   const [formData, setFormData] = useState({
     role: "",
@@ -113,11 +114,9 @@ const CreateSession = () => {
         <button
           type="submit"
           disabled={isLoading}
-          className={`${
-            isLoading ? "bg-gray-400 cursor-not-allowed" : "btn-primary"
-          } text-white px-4 py-2 rounded mt-4`}
+          className="btn-primary w-full mt-2"
         >
-          {isLoading ? "Creating Session..." : "Create Session"}
+          {isLoading && <SpinLoader />} Create Session
         </button>
       </form>
     </div>
