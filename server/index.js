@@ -25,6 +25,10 @@ app.use("/session", sessionRoutes);
 app.use("/questions", questionRoutes);
 app.use("/ai", aiRoutes);
 // Start the server
+app.get("/", (req, res) => {
+  res.send("Backend is running 🚀");
+});
+
 connectDB()
   .then(() => {
     app.listen(port, () => {
