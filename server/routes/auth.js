@@ -16,25 +16,26 @@ router.post("/register", registerUser);
 router.get("/profile", authenticateUser, getUserProfile);
 
 router.post("/upload-image", upload.single("image"), async (req, res) => {
-  if (!req.file) {
-    return res.status(400).json({ error: "No image file provided" });
+  try {
+    if (!req.file) return res.status(400).json({ error: "No image uploaded" });
+
+    const response = await imagekit.upload({
+      file: req.file.buffer,
+      fileName: `${Date.now()}-${req.file.originalname}`,
+      folder: "/uploads",
+    });
+
+    res.status(200).json({
+      message: "Image uploaded successfully",
+      success: true,
+      profileImageUrl: response.url,
+    });
+  } catch (err) {
+    console.error("ImageKit Upload Error:", err);
+    res
+      .status(500)
+      .json({ error: "Image upload failed", details: err.message });
   }
-  // const imageUrl = `${req.protocol}://${req.get("host")}/uploads/${
-  //   req.file.filename
-  // }`;
-
-  const fileName = `${Date.now()}-${req.file.originalname}`;
-
-  // Upload to ImageKit
-  const response = await imagekit.upload({
-    file: req.file.buffer, // file buffer from memoryStorage
-    fileName,
-    folder: "/uploads", // optional folder
-  });
-  return res.status(200).json({
-    message: "Image uploaded successfully",
-    success: true,
-    profileImageUrl: response.url, // hosted image URL
-  });
 });
+
 module.exports = router;
